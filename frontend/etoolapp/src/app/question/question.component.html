@@ -5,30 +5,33 @@
       <div class="field">
         <span class="field-title">{{'Select your age range:'}}</span>
         <select formControlName="ageRange">
-          <option *ngFor="let answer of answersToAge" [value]="answer.title">{{answer.description}}</option>
+          <option *ngFor="let answer of answersToAge" [value]="answer.description">{{answer.description}}</option>
         </select>
       </div>
       <div class="field">
         <span class="field-title">{{'Are you a student?'}}</span>
         <select formControlName="isStudent">
-          <option [value]="true">Yes</option>
-          <option [value]="false">No</option>
+          <option [value]=true>Yes</option>
+          <option [value]=false>No</option>
         </select>
       </div>
       <div class="margin-top-5">
         <div class="field">
           <span class="field-title">{{'Select your income range:'}}</span>
           <select formControlName="incomeRange">
-            <option *ngFor="let answer of answersToIncome" [value]="answer.title">{{answer.description}}</option>
+            <option *ngFor="let answer of answersToIncome" [value]="answer.description">{{answer.description}}</option>
           </select>
         </div>
       </div>
       <div class="bottom-buttons">
-        <button type="button" class="btn btn-primary" (click)="getRecomendation()">
-          {{'Get recomendation'}}
+        <button type="button" class="btn btn-primary" (click)="findRecommendedProduct()">
+          {{'Find recommended product'}}
         </button>
-        <button type="button" class="btn btn-primary" (click)="cancel()">{{'Cancel'}}</button>
       </div>
     </div>
   </form>
+
+  <div *ngIf=recommendedProduct>
+    {{'Recomemded product: '}} {{recommendedProduct.title}}
+  </div>
 </div>
