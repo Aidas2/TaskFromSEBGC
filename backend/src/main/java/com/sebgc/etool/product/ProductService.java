@@ -3,6 +3,7 @@ package com.sebgc.etool.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.sebgc.etool.product.IncomeRangeConstants.*;
@@ -19,7 +20,7 @@ public class ProductService {
     }
 
     // Solution_1 (manipulating ranges as strings):
-    public Product findRecommendedProductByRanges(String ageRange, boolean isStudent, String incomeRange) {
+    public List<Product> findRecommendedProductByRanges(String ageRange, boolean isStudent, String incomeRange) {
         // restore plus sign
         if (ageRange.contains(" ")) {
             ageRange = ageRange.replace(" ", "+");
@@ -31,40 +32,41 @@ public class ProductService {
         return this.compute(ageRange, isStudent, incomeRange);
     }
 
-    public Product compute(String ageRange, Boolean isStudent, String incomeRange) {
-        Product recommendedProduct = null;
-
-        // TODO improve logic (not working correctly!)
+    public List<Product> compute(String ageRange, Boolean isStudent, String incomeRange) {
+        // this looks like semi-hardcoded ...
+        List<Product> recommendedProducts = new ArrayList<>();
         if (ageRange.equals(AgeRange.YOUNG.description)) {
-            recommendedProduct = productRepository.findProductByTitle(ProductEnum.JUNIOR.title);
+            recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.JUNIOR.title));
+            return recommendedProducts;
         }
         if (ageRange.equals(AgeRange.SENIOR.description)) {
-            recommendedProduct = productRepository.findProductByTitle(ProductEnum.SENIOR.title);
+            recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.SENIOR.title));
+            return recommendedProducts;
         }
         if (ageRange.equals(AgeRange.MIDDLE.description) && isStudent == true) {
-            recommendedProduct = productRepository.findProductByTitle(ProductEnum.STUDENT.title);
+            recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.STUDENT.title));
+            return recommendedProducts;
         };
         if (ageRange.equals(AgeRange.MIDDLE.description)) {
-            // this looks like semi-hardcoded ...
             switch (incomeRange) {
                 case ZERO:
-                    recommendedProduct = productRepository.findProductByTitle(ProductEnum.CURRENT.title);
-                    break;
+                    recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.CURRENT.title));
+                    return recommendedProducts;
                 case SMALL:
-                    recommendedProduct = productRepository.findProductByTitle(ProductEnum.DEBIT.title);
-                    break;
+                    recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.DEBIT.title));
+                    return recommendedProducts;
                 case MEDIUM:
-                    recommendedProduct = productRepository.findProductByTitle(ProductEnum.CREDIT.title);
-                    break;
+                    recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.CREDIT.title));
+                    return recommendedProducts;
                 case LARGE:
-                    recommendedProduct = productRepository.findProductByTitle(ProductEnum.GOLD.title);
-                    break;
+                    recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.CURRENT_PLUS.title));
+                    recommendedProducts.add(productRepository.findProductByTitle(ProductEnum.GOLD.title));
+                    return recommendedProducts;
                 default:
-                    recommendedProduct = null;
+                    return recommendedProducts;
             }
         };
-
-        return recommendedProduct;
+        return recommendedProducts;
     }
 
     // Solution_2 (manipulating numbers as integers):

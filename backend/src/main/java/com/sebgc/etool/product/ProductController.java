@@ -28,7 +28,7 @@ public class ProductController {
 
     // Solution_1 (manipulating ranges as strings):
     @GetMapping("/by-params")
-    public  ResponseEntity<Product> findRecommendedProductByRanges(@RequestParam final String ageRange,
+    public  ResponseEntity<List<Product>> findRecommendedProductByRanges(@RequestParam final String ageRange,
                                                                     @RequestParam final boolean isStudent,
                                                                     @RequestParam final String incomeRange) {
         return ResponseEntity.status(HttpStatus.OK).body(productService.findRecommendedProductByRanges(

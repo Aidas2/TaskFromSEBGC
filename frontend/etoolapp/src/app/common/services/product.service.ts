@@ -26,9 +26,8 @@ export class ProductService {
   //   return this.httpClient.post<Product>(this.backendUrl + 'products/by-params', response);
   // }
 
-  public findRecommendedProduct(response: Response): Observable<Product> {
-    console.log(response);
-    return this.httpClient.get<Product>(this.backendUrl + 'products/by-params',
+  public findRecommendedProduct(response: Response): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.backendUrl + 'products/by-params',
       {
         params: {
           ageRange: '' + response.ageRange,

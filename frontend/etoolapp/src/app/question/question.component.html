@@ -31,7 +31,21 @@
     </div>
   </form>
 
-  <div *ngIf=recommendedProduct>
-    {{'Recomemded product: '}} {{recommendedProduct.title}}
+  <div *ngIf="recommendedProducts && recommendedProducts.length > 0; else noRecommendation">
+    {{'Recommended product/-s: '}}
+    <div *ngFor="let product of recommendedProducts">
+      {{product.title}}
+    </div>
+  </div>
+  <ng-template #noRecommendation>
+    <div>There is no recommendation</div>
+  </ng-template>
+</div>
+<br>
+<hr>
+<div *ngIf="products">
+  <div>Possible products:</div>
+  <div *ngFor="let product of products">
+    {{product.title}} {{product.description}}
   </div>
 </div>

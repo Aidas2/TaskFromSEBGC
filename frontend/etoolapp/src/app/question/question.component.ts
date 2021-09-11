@@ -12,8 +12,8 @@ import { ProductService } from '../common/services/product.service';
 })
 export class QuestionComponent implements OnInit {
 
-  public products: Product[];
-  public recommendedProduct: Product;
+  public products: Product[] = [];
+  public recommendedProducts: Product[] = [];
   public response: Response;
   public answersToAge = this.possibleAnswers.answersToAge;
   public answersToIncome = this.possibleAnswers.answersToIncome;
@@ -30,10 +30,9 @@ export class QuestionComponent implements OnInit {
   }
 
   public findProducts(): void {
-    this.productService.findProducts().subscribe(products => {
-      // console.log(products);
-      if (products) {
-        this.products = products;
+    this.productService.findProducts().subscribe(value => {
+      if (value) {
+        this.products.push(...value);
       }
     });
   }
@@ -59,10 +58,10 @@ export class QuestionComponent implements OnInit {
   }
 
   public findRecommendedProduct(): void {
-    this.productService.findRecommendedProduct(this.response).subscribe((value: Product) => {
-      console.log(value.title);
-      if (value) {
-        this.recommendedProduct = value;
+    this.recommendedProducts = [];
+    this.productService.findRecommendedProduct(this.response).subscribe((products: Product[]) => {
+      if (products) {
+        this.recommendedProducts.push(...products);
       }
     });
   }
