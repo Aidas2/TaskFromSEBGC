@@ -33,6 +33,8 @@ public class ProductService {
 
     public Product compute(String ageRange, Boolean isStudent, String incomeRange) {
         Product recommendedProduct = null;
+
+        // TODO improve logic (not working correctly!)
         if (ageRange.equals(AgeRange.YOUNG.description)) {
             recommendedProduct = productRepository.findProductByTitle(ProductEnum.JUNIOR.title);
         }
@@ -66,8 +68,11 @@ public class ProductService {
     }
 
     // Solution_2 (manipulating numbers as integers):
+    /*
     public List<Product> findRecommendedProducts(Integer minAge, Integer maxAge, Integer minIncome, Integer maxIncome, boolean isStudent) {
         List<Product> products = productRepository.findRecommendedProducts(minAge, maxAge, minIncome, maxIncome, isStudent);
         return products;
     }
+
+     */
 }

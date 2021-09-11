@@ -12,6 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Product findProductByTitle(String title);
 
     // Solution_2 (manipulating numbers as integers):
+    /*
     @Query("SELECT p FROM products p WHERE p.minAge = :minAge AND p.maxAge = :maxAge AND " +
             "p.minIncome = :minIncome AND p.maxIncome = :maxIncome AND " +
             "p.isStudent = :isStudent")
@@ -21,4 +22,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             @Param("minIncome") Integer minIncome,
             @Param("maxIncome") Integer maxIncome,
             @Param("isStudent") boolean isStudent);
+
+     */
 }
