@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+.main-container {
+  margin: 5em;
+  padding: 5rem;
+  background-color:lightgrey;
+  border-radius: 5em;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.field {
+  align-items: baseline;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 15rem 25rem;
+  .field-title {
+    text-align:start;
+    margin-right: 1em;
+  }
+}
+
+// TODO create responsive design
+// NICE TO HAVE: change text color depending on product title

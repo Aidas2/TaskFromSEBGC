@@ -36,6 +36,7 @@ public class ProductController {
     }
 
     // Solution_2 (manipulating numbers as integers):
+    // ABANDONED (despite it looks like more real world solution...)
     /*
     @PostMapping("/by-params-2")
     public  ResponseEntity<List<Product>> findRecommendedProductsByNumbers(@RequestParam final String ageRange,
