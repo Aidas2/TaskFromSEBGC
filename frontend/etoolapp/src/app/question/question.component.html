@@ -29,7 +29,16 @@
 
   <div>{{'Recommended product/-s: '}}</div>
   <div *ngIf="recommendedProducts && recommendedProducts.length > 0; else noRecommendation">
-    <div *ngFor="let product of recommendedProducts" class="heading">
+    <div *ngFor="let product of recommendedProducts" class="heading"
+    [ngClass] = "{
+      'zero': (product.title === products[0].title),
+      'one': (product.title === products[1].title),
+      'two': (product.title === products[2].title),
+      'three': (product.title === products[3].title),
+      'four': (product.title === products[4].title),
+      'five': (product.title === products[5].title),
+      'six': (product.title === products[6].title),
+      'seven': (product.title === products[7].title)}">
       {{product.title}}
     </div>
   </div>
