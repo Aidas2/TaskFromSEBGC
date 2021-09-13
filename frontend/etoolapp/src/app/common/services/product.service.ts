@@ -37,4 +37,8 @@ export class ProductService {
       });
   }
 
+  public findEight(): number {
+    return 8;
+  }
+
 }

@@ -15,20 +15,15 @@ export class PossibleAnwers {
 }
 
 // *ngFor iterates array, but not enum
-// export enum AnswersToAge {
-//   YOUNG = '0-17',
-//   MIDDLE = '18-64',
-//   SENIOR = '65+',
-// }
+export enum AgeRange {
+  YOUNG = '0-17',
+  MIDDLE = '18-64',
+  SENIOR = '65+',
+}
 
-// export enum AnswersToStatus {
-//   YES = 'true',
-//   NO = 'false',
-// }
-
-// export enum AnswersToIncome {
-//   SMALL = '0',
-//   MEDIUM = '1-12000',
-//   BIG = '12001-40000',
-//   LARGE = '40001+',
-// }
+export enum IncomeRange {
+  SMALL = '0',
+  MEDIUM = '1-12000',
+  BIG = '12001-40000',
+  LARGE = '40001+',
+}
