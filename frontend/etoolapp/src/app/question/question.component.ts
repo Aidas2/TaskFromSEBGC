@@ -12,8 +12,9 @@ import { ProductService } from '../common/services/product.service';
 })
 export class QuestionComponent implements OnInit {
 
-  public products: Product[];
-  public response: Response = new Response();
+  public products: Product[] = [];
+  public recommendedProducts: Product[] = [];
+  public response: Response;
   public answersToAge = this.possibleAnswers.answersToAge;
   public answersToIncome = this.possibleAnswers.answersToIncome;
   questionForm: FormGroup;
@@ -25,48 +26,44 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     this.findProducts();
     this.initForm();
-    console.log(this.answersToAge);
-    console.log(this.answersToIncome);
+    this.response = new Response(this.answersToAge[0].description, false, this.answersToIncome[0].description);
   }
 
   public findProducts(): void {
-    this.productService.findProducts().subscribe(products => {
-      console.log(products);
-      if (products) {
-        this.products = products;
+    this.productService.findProducts().subscribe(value => {
+      if (value) {
+        this.products.push(...value);
       }
     });
   }
 
   public initForm(): void {
     this.questionForm = this.formBuilder.group({
-      ageRange: new FormControl('', Validators.required),
-      isStudent: new FormControl('', Validators.required),
-      incomeRange: new FormControl('', Validators.required)
+      ageRange: new FormControl(this.answersToAge[0].description, Validators.required),
+      isStudent: new FormControl(false, Validators.required),
+      incomeRange: new FormControl(this.answersToIncome[0].description, Validators.required)
     });
 
     this.questionForm.get('ageRange').valueChanges.subscribe(value => {
-      console.log(value);
       this.response.ageRange = value;
     });
 
     this.questionForm.get('isStudent').valueChanges.subscribe(value => {
-      console.log(value);
       this.response.isStudent = value;
     });
 
     this.questionForm.get('incomeRange').valueChanges.subscribe(value => {
-      console.log(value);
       this.response.incomeRange = value;
     });
   }
 
-  public getRecomendation(): void {
-    // TODO
-    console.log(this.response);
+  public findRecommendedProduct(): void {
+    this.recommendedProducts = [];
+    this.productService.findRecommendedProduct(this.response).subscribe((products: Product[]) => {
+      if (products) {
+        this.recommendedProducts.push(...products);
+      }
+    });
   }
 
-  public cancel(): void {
-    // TODO
-  }
 }

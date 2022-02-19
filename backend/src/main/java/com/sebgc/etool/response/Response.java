@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="responses")
 public class Response {
+    // not required class, unless for saving responses to db (for history/statistic)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

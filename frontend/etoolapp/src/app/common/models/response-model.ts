@@ -4,13 +4,9 @@ export class Response {
   isStudent: boolean;
   incomeRange: string;
 
-  constructor(){
-
+  constructor(ageRange: string, isStudent: boolean, incomeRange: string){
+    this.ageRange = ageRange;
+    this.isStudent = isStudent;
+    this.incomeRange = incomeRange;
   }
-
-  // constructor(ageRange: string, isStudent: boolean, incomeRange: string){
-  //   this.ageRange = ageRange;
-  //   this.isStudent = isStudent;
-  //   this.incomeRange = incomeRange;
-  // }
 }
